@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'Windows 11'  // Ensure this matches your Windows agent label
-    }
+    agent any
 
     environment {
         BRANCH_NAME = "${env.BRANCH_NAME}"
@@ -10,7 +8,7 @@ pipeline {
     stages {
         stage('Build and Deploy') {
             steps {
-                echo "Running on branch: ${env.BRANCH_NAME}"
+                echo "Running on branch: ${BRANCH_NAME}"
                 bat 'deploy.bat'
             }
         }
