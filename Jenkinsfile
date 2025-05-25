@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'windows'
+    }
 
     environment {
         BRANCH_NAME = "${env.BRANCH_NAME}"
