@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'windows'  // Ensure this matches your Windows agent label
+        label 'Windows 11'  // Ensure this matches your Windows agent label
     }
 
     environment {
