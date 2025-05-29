@@ -1,27 +1,19 @@
 pipeline {
-    agent {
-        label 'windows'
+    agent any
+    tools {
+        maven 'Maven 3.8.1'
+        jdk 'Java 11'
     }
-
-    environment {
-        BRANCH_NAME = "${env.BRANCH_NAME}"
-    }
-
     stages {
-        stage('Build and Deploy') {
+        stage('Checkout') {
             steps {
-                echo "Running on branch: ${BRANCH_NAME}"
-                bat 'deploy.bat'
+                git 'https://github.com/your-username/simple-maven-project.git'
             }
         }
-    }
-
-    post {
-        success {
-            echo "✅ Pipeline completed successfully."
-        }
-        failure {
-            echo "❌ Pipeline failed."
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
         }
     }
 }
